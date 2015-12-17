@@ -5,6 +5,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 var express = require('express'),
 	mongojs = require('mongojs'),
 	bodyParser = require('body-parser')
+
+var compression,
+	morgan
 	
 var app = express(),
 	dbLocation = ''
