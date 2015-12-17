@@ -1,0 +1,25 @@
+{
+  "name": "cafe-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-live-server": "0.0.29",
+    "morgan": "^1.6.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mongojs": "^2.2.0",
+    "xhr": "^2.2.0"
+  }
+}

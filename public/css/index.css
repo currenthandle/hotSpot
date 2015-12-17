@@ -1,0 +1,31 @@
+body{
+	background-image: url("/img/background.jpg") !important;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+	background-color: rgba(129, 214, 2, 0.5);
+}
+table tr td {
+	text-align: center;
+	margin: 15px 0 0 0;
+}
+th {
+	text-align: center;
+}
+#addCafe input{
+	display: inline;	
+	width: 40%;
+}
+#addCafe button{
+	display: inline;	
+	width: 20%;
+	margin: 3px 0 0 0;
+	padding: 4px 0 4px 0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	padding: 20px 0 0 0;
+}
+
+button, input, optgroup, select, textarea {
+	margin-top: -4px;	
+}
+

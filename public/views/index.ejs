@@ -1,0 +1,53 @@
+<!doctype>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href='/css/bootstrap.min.css'>
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
+<body>
+	<div class="container">
+		<header class="row">
+			<h1>Hot Spot</h1>
+		</header>
+		<div class="row">
+			<table class="table table-striped col-md-12">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Address</th>
+						<th>Download</th>
+						<th>Upload</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (var i = 0; i < cafes.length; i++) { %>
+						<tr>
+							<td><%= cafes[i].name %></td>
+							<td><%= cafes[i].address %></td>
+							<td><%= cafes[i].downAvg %></td>
+							<td><%= cafes[i].upAvg %></td>
+							<td>
+								<form class="addTest" action="/addTest" method="post">
+									<input type="hidden" name="id" value="<%= cafes[i]._id %>">
+									<button type="submit">Add Test</button>
+								</form>
+							</td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div> <!-- Row -->
+		<div class="row form-group">
+			<form id="addCafe" action="/addCafe" method="post">
+				<input type="text" class="col-md-5 form-control" name="name" placeholder="Name">
+				<input type="text" class="col-md-5 form-control" name="address" placeholder="Address">
+				<button class="" type="submit" class="col-md-2">Add Location</button>
+			</form>
+		</div> <!-- Row -->
+		<footer class="row">
+		</footer>
+	</div>
+	<script src='/js/bundle.js'></script>
+</body>
+</html>
