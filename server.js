@@ -5,15 +5,23 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 var express = require('express'),
 	mongojs = require('mongojs'),
 	morgan = require('morgan'),
+	compression = require('compression'), 
 	bodyParser = require('body-parser')
 	
 var app = express(),
-	db = mongojs('cafedb', ['cafes'])
+	dbLocation = ''
 
 app.use(bodyParser.urlencoded({'extended':'true'}))
 app.use(bodyParser.json())
 
-app.use(morgan('dev'))
+if(process.env.NODE_ENV === 'development'){
+	dbLocation = 'cafedb'
+	app.use(morgan('dev'))
+} else if (process.env.NODE_ENV === 'production'){
+	dbLocation = 'mongodb://leptone:leptone@ds033145.mongolab.com:33145/heroku_n1twfcxv'
+	app.use(compression())
+}
+var db = mongojs('cafedb', ['cafes'])
 
 app.set('views', './public/views')
 app.set('view engine', 'ejs')
