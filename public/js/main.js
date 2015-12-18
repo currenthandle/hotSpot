@@ -1,10 +1,10 @@
 var xhr = require("xhr")
 function downloadTest(callback){
-    //console.log('inside downTest')
+    console.log('inside downTest')
     var begin = Date.now() 
-    //console.log('begin time', begin)
+    console.log('begin time', begin)
     xhr('/file.m4a', function (err, resp, body) {
-        //console.log('Inside xhr callback, for download')
+        console.log('Inside xhr callback, for download')
         if (err) console.log(err)
         else{ 
             var end = Date.now() 
