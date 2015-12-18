@@ -39,14 +39,14 @@ var downloadHeader = document.querySelector('#downloadHeader')
 downloadHeader.addEventListener('click', function(event){
 		
     xhr({'method': 'POST', 'uri': '/uploadTest', 'body': body }, function(err, resp, miliElapse){
-        //console.log('Inside xhr callback, for upload')
+        console.log('Inside xhr callback, for upload')
         if (err) console.log('err',err)
         else{
-            //console.log('Upload fileSize', fileSize)
+            console.log('Upload fileSize', fileSize)
             miliElapse = Number(miliElapse)
             var mBytesSize = fileSize, 
             mBitsPerSecond = (fileSize/miliElapse)*8000
-            //console.log('mBitsPerSecond Up', mBitsPerSecond)
+            console.log('mBitsPerSecond Up', mBitsPerSecond)
             callback(mBitsPerSecond)
         }
     })
@@ -58,12 +58,13 @@ downloadHeader.addEventListener('click', function(event){
 var newSpeedTestForms = document.querySelectorAll('.addTest')
 //console.log('newSpeedTestForms', newSpeedTestForms)
 for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){
-    //console.log('newSpeedTestForm conditional')
+    console.log('newSpeedTestForm conditional')
     form.addEventListener('click', function(event){
 		console.log('form.elements.id.value,',form.elements.id.value)
-        //console.log('addSpeedTest Event Triggered')
+        console.log('addSpeedTest Event Triggered')
         event.preventDefault()
-        //console.log('addSpeedTest Event Triggered')
+        console.log('addSpeedTest Event Triggered')
+		console.log('calling downloadTest on next line')
         downloadTest(function(downloadSpeed, body, fileSize){
             uploadTest(body, fileSize, function(uploadSpeed){
                 
