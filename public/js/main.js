@@ -27,18 +27,19 @@ function downloadTest(callback){
     })
 }
     
-function uploadTest(body, fileSize, callback){
+function uploadTest(body, megaBitsSize, callback){
     //console.log('inside upTest')
     xhr({'method': 'POST', 'uri': '/uploadTest', 'body': body }, function(err, resp, miliElapse){
         //console.log('Inside xhr callback, for upload')
         if (err) console.log('err',err)
         else{
-            //console.log('Upload fileSize', fileSize)
+            console.log('megaBitsSize', megaBitsSize)
+            console.log('MiliElapse', miliElapse)
             miliElapse = Number(miliElapse)
-            var mBytesSize = fileSize, 
-            mBitsPerSecond = (fileSize/miliElapse)*8000
+			var secondElapse = miliElapse * Math.pow(10, -3)
+            megaBitsPerSecond = megaBitsSize/secondElapse
             //console.log('mBitsPerSecond Up', mBitsPerSecond)
-            callback(mBitsPerSecond)
+            callback(megaBitsPerSecond)
         }
     })
 }
