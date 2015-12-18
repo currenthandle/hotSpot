@@ -6,7 +6,8 @@ var express = require('express'),
 	mongojs = require('mongojs'),
 	bodyParser = require('body-parser')
 
-var morgan
+var morgan,
+	compression
 	
 var app = express(),
 	dbLocation = ''
@@ -17,10 +18,13 @@ app.use(bodyParser.json())
 if(process.env.NODE_ENV === 'development'){
 	dbLocation = 'cafedb'
 	
-	morgan = require('morgan'),
+	morgan = require('morgan')
 	app.use(morgan('dev'))
 } else if (process.env.NODE_ENV === 'production'){
 	dbLocation = 'mongodb://leptone:leptone@ds033145.mongolab.com:33145/heroku_n1twfcxv'
+	
+	compression = require('compression')
+	app.use(compression())
 }
 var db = mongojs(dbLocation, ['cafes'])
 
