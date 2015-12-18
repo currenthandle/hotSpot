@@ -22,8 +22,8 @@ if(process.env.NODE_ENV === 'development'){
 	app.use(morgan('dev'))
 } else if (process.env.NODE_ENV === 'production'){
 	dbLocation = 'mongodb://leptone:leptone@ds033145.mongolab.com:33145/heroku_n1twfcxv'
-	
-//	app.use(require('compression')())
+	compresion = require('compression')
+	app.use(compression())
 }
 var db = mongojs(dbLocation, ['cafes'])
 
@@ -37,7 +37,7 @@ console.log('Listening on port 3000')
 	
 // Routes
 app.get('/', function(req, res, next){
-	console.log('req.body.sort', req.body)
+	console.log('req.body.sorter', req.body.sorter)
 	if(req.body.sort === 'upAvg'){
 		db.cafes.find().sort({upAvg: -1}).toArray(function(err, cafes){
 			if (err) { next(err) }
