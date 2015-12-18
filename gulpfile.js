@@ -1,8 +1,7 @@
 var gulp = require('gulp'),
 	gls = require('gulp-live-server')
 	browserify = require('browserify'),
-	source = require('vinyl-source-stream'),
-	compression = require('compression')
+	source = require('vinyl-source-stream')
 
 gulp.task('serve', function(){
 	var server = gls.new('server.js')
