@@ -9,12 +9,20 @@ function downloadTest(callback){
         else{ 
             var end = Date.now() 
             var miliElapse = end - begin
-            mBytesSize = resp.headers['content-length']
-            mBitsPerSecond = (mBytesSize/miliElapse)
-            console.log("resp.headers['content-length']", resp.headers['content-length'])
-            console.log('mBytesSize', mBytesSize) 
-            console.log('miliElapse', Number(miliElapse)) 
-            callback(mBitsPerSecond, body, resp.headers['content-length'])
+			var secondElapse = miliElapse * Math.pow(10, -3)
+			
+            var bytesSize = Number(resp.headers['content-length'])
+			var megaBitsSize = bytesSize * 8 * Math.pow(10, -6)
+            megaBitsPerSecond = (megaBitsSize/secondElapse)
+			
+            console.log('miliElapse', miliElapse) 
+            console.log('secondElapse', secondElapse) 
+            
+			//console.log("resp.headers['content-length']", resp.headers['content-length'])
+            console.log('bytesSize', bytesSize) 
+            console.log('megaBitsSize', megaBitsSize) 
+			
+            callback(megaBitsPerSecond, body, megaBitsSize)
         }
     })
 }
