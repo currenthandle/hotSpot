@@ -11,9 +11,9 @@ function downloadTest(callback){
             var miliElapse = end - begin
             mBytesSize = resp.headers['content-length']
             mBitsPerSecond = (mBytesSize/miliElapse)
-            //console.log('Doewnload fileSize', resp.headers['content-length'])
-            //console.log('mBytesSize', mBytesSize) 
-            //console.log('miliElapse', Number(miliElapse)) 
+            console.log("resp.headers['content-length']", resp.headers['content-length'])
+            console.log('mBytesSize', mBytesSize) 
+            console.log('miliElapse', Number(miliElapse)) 
             callback(mBitsPerSecond, body, resp.headers['content-length'])
         }
     })
