@@ -22,8 +22,8 @@ if(process.env.NODE_ENV === 'development'){
 	app.use(morgan('dev'))
 } else if (process.env.NODE_ENV === 'production'){
 	dbLocation = 'mongodb://leptone:leptone@ds033145.mongolab.com:33145/heroku_n1twfcxv'
-	compresion = require('compression')
-	app.use(compression())
+	//compresion = require('compression')
+	//app.use(compression())
 }
 var db = mongojs(dbLocation, ['cafes'])
 
