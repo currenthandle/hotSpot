@@ -399,28 +399,37 @@ function downloadTest(callback){
         else{ 
             var end = Date.now() 
             var miliElapse = end - begin
-            mBytesSize = resp.headers['content-length']
-            mBitsPerSecond = (mBytesSize/miliElapse)
-            console.log("resp.headers['content-length']", resp.headers['content-length'])
-            console.log('mBytesSize', mBytesSize) 
-            console.log('miliElapse', Number(miliElapse)) 
-            callback(mBitsPerSecond, body, resp.headers['content-length'])
+			var secondElapse = miliElapse * Math.pow(10, -3)
+			
+            var bytesSize = Number(resp.headers['content-length'])
+			var megaBitsSize = bytesSize * 8 * Math.pow(10, -6)
+            megaBitsPerSecond = (megaBitsSize/secondElapse)
+			
+            console.log('miliElapse', miliElapse) 
+            console.log('secondElapse', secondElapse) 
+            
+			//console.log("resp.headers['content-length']", resp.headers['content-length'])
+            console.log('bytesSize', bytesSize) 
+            console.log('megaBitsSize', megaBitsSize) 
+			
+            callback(megaBitsPerSecond, body, megaBitsSize)
         }
     })
 }
     
-function uploadTest(body, fileSize, callback){
-    //console.log('inside upTest')
+function uploadTest(body, megaBitsSize, callback){
+    console.log('inside upTest')
     xhr({'method': 'POST', 'uri': '/uploadTest', 'body': body }, function(err, resp, miliElapse){
-        //console.log('Inside xhr callback, for upload')
+        console.log('Inside xhr callback, for upload')
         if (err) console.log('err',err)
         else{
-            //console.log('Upload fileSize', fileSize)
+            console.log('megaBitsSize', megaBitsSize)
+            console.log('MiliElapse', miliElapse)
             miliElapse = Number(miliElapse)
-            var mBytesSize = fileSize, 
-            mBitsPerSecond = (fileSize/miliElapse)*8000
+			var secondElapse = miliElapse * Math.pow(10, -3)
+            megaBitsPerSecond = megaBitsSize/secondElapse
             //console.log('mBitsPerSecond Up', mBitsPerSecond)
-            callback(mBitsPerSecond)
+            callback(megaBitsPerSecond)
         }
     })
 }
@@ -476,7 +485,7 @@ for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){
                 }
                 
                 console.log('downloadSpeed',downloadSpeed) 
-                console.log('uploadTest',uploadSpeed)
+                console.log('uploadSpeed',uploadSpeed)
                 console.log('postInfo',postInfo)
                 
                 xhr(postInfo, function(err) {   

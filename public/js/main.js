@@ -28,7 +28,7 @@ function downloadTest(callback){
 }
     
 function uploadTest(body, megaBitsSize, callback){
-    //console.log('inside upTest')
+    console.log('inside upTest')
     xhr({'method': 'POST', 'uri': '/uploadTest', 'body': body }, function(err, resp, miliElapse){
         console.log('Inside xhr callback, for upload')
         if (err) console.log('err',err)
@@ -95,7 +95,7 @@ for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){
                 }
                 
                 console.log('downloadSpeed',downloadSpeed) 
-                console.log('uploadTest',uploadSpeed)
+                console.log('uploadSpeed',uploadSpeed)
                 console.log('postInfo',postInfo)
                 
                 xhr(postInfo, function(err) {   
