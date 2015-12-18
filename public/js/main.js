@@ -30,7 +30,7 @@ function downloadTest(callback){
 function uploadTest(body, megaBitsSize, callback){
     //console.log('inside upTest')
     xhr({'method': 'POST', 'uri': '/uploadTest', 'body': body }, function(err, resp, miliElapse){
-        //console.log('Inside xhr callback, for upload')
+        console.log('Inside xhr callback, for upload')
         if (err) console.log('err',err)
         else{
             console.log('megaBitsSize', megaBitsSize)
