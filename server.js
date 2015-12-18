@@ -25,7 +25,7 @@ if(process.env.NODE_ENV === 'development'){
 	
 //	app.use(require('compression')())
 }
-var db = mongojs('cafedb', ['cafes'])
+var db = mongojs(dbLocation, ['cafes'])
 
 app.set('views', './public/views')
 app.set('view engine', 'ejs')
@@ -37,7 +37,25 @@ console.log('Listening on port 3000')
 	
 // Routes
 app.get('/', function(req, res, next){
-	db.cafes.find().toArray(function(err, cafes){
+	console.log('req.body.sort', req.body)
+	if(req.body.sort === 'upAvg'){
+		db.cafes.find().sort({upAvg: -1}).toArray(function(err, cafes){
+			if (err) { next(err) }
+			else {
+				res.render('index', {cafes: cafes})
+			}
+		})
+	} else {
+		db.cafes.find().sort({downAvg: -1}).toArray(function(err, cafes){
+			if (err) { next(err) }
+			else {
+				res.render('index', {cafes: cafes})
+			}
+		})
+	}
+})
+app.get('/upSort', function(req, res, next){
+	db.cafes.find().sort({upAvg: -1}).toArray(function(err, cafes){
 		if (err) { next(err) }
 		else {
 			res.render('index', {cafes: cafes})

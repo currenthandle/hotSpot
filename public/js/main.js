@@ -35,6 +35,26 @@ function uploadTest(body, fileSize, callback){
     })
 }
 
+var downloadHeader = document.querySelector('#downloadHeader')
+downloadHeader.addEventListener('click', function(event){
+		
+    xhr({'method': 'POST', 'uri': '/uploadTest', 'body': body }, function(err, resp, miliElapse){
+        //console.log('Inside xhr callback, for upload')
+        if (err) console.log('err',err)
+        else{
+            //console.log('Upload fileSize', fileSize)
+            miliElapse = Number(miliElapse)
+            var mBytesSize = fileSize, 
+            mBitsPerSecond = (fileSize/miliElapse)*8000
+            //console.log('mBitsPerSecond Up', mBitsPerSecond)
+            callback(mBitsPerSecond)
+        }
+    })
+	
+	event.preventDefault()
+
+})
+
 var newSpeedTestForms = document.querySelectorAll('.addTest')
 //console.log('newSpeedTestForms', newSpeedTestForms)
 for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){

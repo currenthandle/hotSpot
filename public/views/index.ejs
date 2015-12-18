@@ -10,13 +10,23 @@
 			<h1>Hot Spot</h1>
 		</header>
 		<div class="row">
-			<table class="table table-striped col-md-12">
+			<table class="table table-striped col-sd-12">
 				<thead>
 					<tr>
 						<th>Name</th>
 						<th>Address</th>
-						<th>Download</th>
-						<th>Upload</th>
+						<th id="downloadHeader">
+							<form action="/" method="get">
+								<input type="hidden" name="sort" value="downAvg">
+								<button type="submit">Download</button>
+							</form>
+						</th>
+						<th id="uploadHeader">
+							<form action="/" method="get">
+								<input type="hidden" name="sort" value="upAvg">
+								<button type="submit">Upload</button>
+							</form>
+						</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -30,7 +40,7 @@
 							<td>
 								<form class="addTest" action="/addTest" method="post">
 									<input type="hidden" name="id" value="<%= cafes[i]._id %>">
-									<button type="submit">Add Test</button>
+									<button type="submit" class="btn">Add Test</button>
 								</form>
 							</td>
 						</tr>
@@ -40,9 +50,9 @@
 		</div> <!-- Row -->
 		<div class="row form-group">
 			<form id="addCafe" action="/addCafe" method="post">
-				<input type="text" class="col-md-5 form-control" name="name" placeholder="Name">
-				<input type="text" class="col-md-5 form-control" name="address" placeholder="Address">
-				<button class="" type="submit" class="col-md-2">Add Location</button>
+				<input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
+				<input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
+				<button class="btn" type="submit" class="col-sd-2">Add Location</button>
 			</form>
 		</div> <!-- Row -->
 		<footer class="row">
