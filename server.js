@@ -108,6 +108,10 @@ function setAvgs(id){
 			}
 			down /= doc.testList.length
 			up /= doc.testList.length
+			
+			down = Math.round(10*down)/10
+			up = Math.round(10*up)/10
+			
 			db.cafes.findAndModify({
 				query: {_id: mongojs.ObjectId(id)},
 				update: {
