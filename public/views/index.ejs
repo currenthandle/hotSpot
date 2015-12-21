@@ -31,15 +31,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for (var i = 0; i < cafes.length; i++) { %>
+					<% for (var i = 0; i < spots.length; i++) { %>
 						<tr>
-							<td><%= cafes[i].name %></td>
-							<td><%= cafes[i].address %></td>
-							<td><%= cafes[i].downAvg %></td>
-							<td><%= cafes[i].upAvg %></td>
+							<td><%= spots[i].name %></td>
+							<td><%= spots[i].address %></td>
+							<td><%= spots[i].downAvg %></td>
+							<td><%= spots[i].upAvg %></td>
 							<td>
 								<form class="addTest" action="/addTest" method="post">
-									<input type="hidden" name="id" value="<%= cafes[i]._id %>">
+									<input type="hidden" name="id" value="<%= spots[i]._id %>">
 									<button type="submit" class="btn">Add Test</button>
 								</form>
 							</td>
@@ -49,7 +49,7 @@
 			</table>
 		</div> <!-- Row -->
 		<div class="row form-group">
-			<form id="addCafe" action="/addCafe" method="post">
+			<form id="addSpot" action="/addSpot" method="post">
 				<input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
 				<input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
 				<button class="btn" type="submit" class="col-sd-2">Add Location</button>

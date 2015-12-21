@@ -34,15 +34,15 @@ table tr td {
 th {
 	text-align: center;
 }
-#addCafe input{
+#addSpot input{
 	display: inline;	
 	width: 40%;
 	margin-right: 10px;
 }
-#addCafe input:first-child {
+#addSpot input:first-child {
 	margin-left: 25px;	
 }
-#addCafe button{
+#addSpot button{
 	display: inline;	
 	width: 10%;
 	margin: -2px 0 0 5px;

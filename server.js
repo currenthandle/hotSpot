@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({'extended':'true'}))
 app.use(bodyParser.json())
 
 if(process.env.NODE_ENV === 'development'){
-	dbLocation = 'cafedb'
+	dbLocation = 'spotdb'
 	
 	morgan = require('morgan')
 	app.use(morgan('dev'))
@@ -26,7 +26,7 @@ if(process.env.NODE_ENV === 'development'){
 	compression = require('compression')
 	app.use(compression())
 }
-var db = mongojs(dbLocation, ['cafes'])
+var db = mongojs(dbLocation, ['spots'])
 
 app.set('views', './public/views')
 app.set('view engine', 'ejs')
@@ -40,34 +40,34 @@ console.log('Listening on port 3000 test')
 app.get('/', function(req, res, next){
 	console.log('req.body.sorter', req.body.sorter)
 	if(req.body.sort === 'upAvg'){
-		db.cafes.find().sort({upAvg: -1}).toArray(function(err, cafes){
+		db.spots.find().sort({upAvg: -1}).toArray(function(err, spots){
 			if (err) { next(err) }
 			else {
-				res.render('index', {cafes: cafes})
+				res.render('index', {spots: spots})
 			}
 		})
 	} else {
-		db.cafes.find().sort({downAvg: -1}).toArray(function(err, cafes){
+		db.spots.find().sort({downAvg: -1}).toArray(function(err, spots){
 			if (err) { next(err) }
 			else {
-				res.render('index', {cafes: cafes})
+				res.render('index', {spots: spots})
 			}
 		})
 	}
 })
 app.get('/upSort', function(req, res, next){
-	db.cafes.find().sort({upAvg: -1}).toArray(function(err, cafes){
+	db.spots.find().sort({upAvg: -1}).toArray(function(err, spots){
 		if (err) { next(err) }
 		else {
-			res.render('index', {cafes: cafes})
+			res.render('index', {spots: spots})
 		}
 	})
 })
-// Add Cafe 
-app.post('/addCafe', function(req, res, next){
+// Add Spot 
+app.post('/addSpot', function(req, res, next){
 	console.log('req.body', req.body)
-	var newCafe = req.body	
-	db.cafes.insert(newCafe)
+	var newSpot = req.body	
+	db.spots.insert(newSpot)
 	
 	res.redirect('/')
 })
@@ -77,7 +77,7 @@ app.post('/addTest', function(req, res, next){
 	console.log('req.body.id', req.body.id)
 	res.end("what the hell!")
 	console.log('req.params.id', req.params.id)
-	db.cafes.findAndModify({
+	db.spots.findAndModify({
 		query: {_id: mongojs.ObjectId(req.body.id)},
 		update: {
 			$push: {
@@ -94,7 +94,7 @@ app.post('/addTest', function(req, res, next){
 	res.redirect('/')
 })
 function setAvgs(id){
-	db.cafes.findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
+	db.spots.findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
 		if(err){ console.log(err) }
 		else{
 			var down = 0,
@@ -112,7 +112,7 @@ function setAvgs(id){
 			down = Math.round(10*down)/10
 			up = Math.round(10*up)/10
 			
-			db.cafes.findAndModify({
+			db.spots.findAndModify({
 				query: {_id: mongojs.ObjectId(id)},
 				update: {
 					$set: {

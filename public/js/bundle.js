@@ -500,8 +500,8 @@ for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){
     })
 })(newSpeedTestForms[i])
 
-var newCafeForm = document.querySelector('#addCafe')
-newCafeForm.addEventListener('submit', function(event){
+var newSpotForm = document.querySelector('#addSpot')
+newSpotForm.addEventListener('submit', function(event){
 	console.log('inside add event listener')
     event.preventDefault()
     downloadTest(function(downloadSpeed, body, fileSize){
@@ -513,10 +513,10 @@ newCafeForm.addEventListener('submit', function(event){
             var postInfo = {
                 headers: {'content-type': 'application/json' },
                 method: 'POST', 
-                uri: '/addCafe', 
+                uri: '/addSpot', 
                 body: JSON.stringify({
-                    name: newCafeForm.elements.name.value,
-                    address: newCafeForm.elements.address.value,
+                    name: newSpotForm.elements.name.value,
+                    address: newSpotForm.elements.address.value,
                     testList: [{timeStamp: timeStamp,
                                 downloadSpeed: Math.round(downloadSpeed*10)/10, 
                                 uploadSpeed: Math.round(uploadSpeed*10)/10}],
