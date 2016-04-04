@@ -14,19 +14,19 @@ var app = express(),
 
 app.use(bodyParser.urlencoded({'extended':'true'}))
 app.use(bodyParser.json())
-
 if(process.env.NODE_ENV === 'development'){
-	dbLocation = 'cafedb'
-	
-	morgan = require('morgan')
-	app.use(morgan('dev'))
+    dbLocation = 'hhot-spot-db'
+
+    morgan = require('morgan')
+    app.use(morgan('dev'))
 } else if (process.env.NODE_ENV === 'production'){
-	dbLocation = 'mongodb://leptone:leptone@ds033145.mongolab.com:33145/heroku_n1twfcxv'
-	
-	compression = require('compression')
-	app.use(compression())
+    dbLocation = 'mongodb://leptone:leptone@ds033145.mongolab.com:33145/heroku_n1twfcxv'
+
+    compression = require('compression')
+    app.use(compression())
 }
-var db = mongojs(dbLocation, ['cafes'])
+var db = mongojs(dbLocation, ['spots'])
+
 
 app.set('views', './public/views')
 app.set('view engine', 'ejs')
@@ -40,14 +40,14 @@ console.log('Listening on port 3000 test')
 app.get('/', function(req, res, next){
 	console.log('req.body.sorter', req.body.sorter)
 	if(req.body.sort === 'upAvg'){
-		db.cafes.find().sort({upAvg: -1}).toArray(function(err, cafes){
+		db.spots.find().sort({upAvg: -1}).toArray(function(err, cafes){
 			if (err) { next(err) }
 			else {
 				res.render('index', {cafes: cafes})
 			}
 		})
 	} else {
-		db.cafes.find().sort({downAvg: -1}).toArray(function(err, cafes){
+		db.spots.find().sort({downAvg: -1}).toArray(function(err, cafes){
 			if (err) { next(err) }
 			else {
 				res.render('index', {cafes: cafes})
@@ -56,7 +56,7 @@ app.get('/', function(req, res, next){
 	}
 })
 app.get('/upSort', function(req, res, next){
-	db.cafes.find().sort({upAvg: -1}).toArray(function(err, cafes){
+	db.spots.find().sort({upAvg: -1}).toArray(function(err, cafes){
 		if (err) { next(err) }
 		else {
 			res.render('index', {cafes: cafes})
@@ -67,7 +67,7 @@ app.get('/upSort', function(req, res, next){
 app.post('/addCafe', function(req, res, next){
 	console.log('req.body', req.body)
 	var newCafe = req.body	
-	db.cafes.insert(newCafe)
+	db.spots.insert(newCafe)
 	
 	res.redirect('/')
 })
@@ -77,7 +77,7 @@ app.post('/addTest', function(req, res, next){
 	console.log('req.body.id', req.body.id)
 	res.end("what the hell!")
 	console.log('req.params.id', req.params.id)
-	db.cafes.findAndModify({
+	db.spots.findAndModify({
 		query: {_id: mongojs.ObjectId(req.body.id)},
 		update: {
 			$push: {
@@ -94,7 +94,7 @@ app.post('/addTest', function(req, res, next){
 	res.redirect('/')
 })
 function setAvgs(id){
-	db.cafes.findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
+	db.spots.findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
 		if(err){ console.log(err) }
 		else{
 			var down = 0,
@@ -108,7 +108,7 @@ function setAvgs(id){
 			}
 			down /= doc.testList.length
 			up /= doc.testList.length
-			db.cafes.findAndModify({
+			db.spots.findAndModify({
 				query: {_id: mongojs.ObjectId(id)},
 				update: {
 					$set: {
