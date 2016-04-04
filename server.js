@@ -15,7 +15,7 @@ var app = express(),
 app.use(bodyParser.urlencoded({'extended':'true'}))
 app.use(bodyParser.json())
 if(process.env.NODE_ENV === 'development'){
-    dbLocation = 'hhot-spot-db'
+    dbLocation = 'hot-spot'
 
     morgan = require('morgan')
     app.use(morgan('dev'))
