@@ -216,3 +216,17 @@ router.addRoute('/deleteCafe', function(server){
 })
 */
 
+//Delete Cafe Route
+router.addRoute('/deleteCafe', function(server){
+    parseform(server.req, server.res, function (err, params) {
+        server.cafes.remove( {"_id": ObjectId(params.id)}, function(err){
+            if(err){
+                server.res.end(JSON.stringify(err))
+                return
+            }
+            server.res.statusCode=302;
+            server.res.setHeader('location', '/'); //redirect header
+            server.res.end('ok\n');
+        });
+    });
+})

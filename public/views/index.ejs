@@ -18,15 +18,16 @@
 						<th id="downloadHeader">
 							<form action="/" method="get">
 								<input type="hidden" name="sorter" value="downAvg">
-								<button type="submit">Download</button>
+								<button type="submit" class="btn btn-warning">Download</button>
 							</form>
 						</th>
 						<th id="uploadHeader">
 							<form action="/" method="get">
 								<input type="hidden" name="sorter" value="upAvg">
-								<button type="submit">Upload</button>
+								<button type="submit" class="btn btn-warning">Upload</button>
 							</form>
 						</th>
+						<th>&nbsp;</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
@@ -40,8 +41,24 @@
 							<td>
 								<form class="addTest" action="/addTest" method="post">
 									<input type="hidden" name="id" value="<%= spots[i]._id %>">
-									<button type="submit" class="btn">Add Test</button>
+									<button type="submit" class="btn btn-primary">Add Test</button>
 								</form>
+							</td>
+							<td>
+								<form action="/deleteSpot" method="delete" class="deleteBtn">
+									<input type="hidden" name="id" value="<%= spots[i]._id %>">
+									<button type="submit" class="btn btn-danger">Delete</button>
+								</form>
+								<script>
+									var deleteBtns = document.querySelectorAll(".deleteBtn")
+									Array.prototype.forEach.call(deleteBtns, function(deleteBtn){
+										deleteBtn.addEventListener('click', function(){
+											var urlReq = new XMLHttpRequest()
+											
+										})
+									})
+									urlReq.open("delete", "/spot)	
+								</script>
 							</td>
 						</tr>
 					<% } %>
