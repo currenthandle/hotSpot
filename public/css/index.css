@@ -1,5 +1,5 @@
 body{
-	background-color: #ffa31a;
+	background-image: url("/img/background.png") !important;
 }
 
 table { border-collapse: separate; }
@@ -34,15 +34,15 @@ table tr td {
 th {
 	text-align: center;
 }
-#addSpot input{
+#addCafe input{
 	display: inline;	
 	width: 40%;
 	margin-right: 10px;
 }
-#addSpot input:first-child {
+#addCafe input:first-child {
 	margin-left: 25px;	
 }
-#addSpot button{
+#addCafe button{
 	display: inline;	
 	width: 10%;
 	margin: -2px 0 0 5px;
@@ -55,4 +55,6 @@ th {
 button, input, optgroup, select, textarea {
 	margin-top: -4px;	
 }
-
+.add-location{
+	overflow: hidden;
+}

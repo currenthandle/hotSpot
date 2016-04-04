@@ -3,7 +3,7 @@ function downloadTest(callback){
     console.log('inside downTest')
     var begin = Date.now() 
     console.log('begin time', begin)
-    xhr('/test.mp3', function (err, resp, body) {
+    xhr('/file.m4a', function (err, resp, body) {
         console.log('Inside xhr callback, for download')
         if (err) console.log(err)
         else{ 
@@ -110,8 +110,8 @@ for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){
     })
 })(newSpeedTestForms[i])
 
-var newSpotForm = document.querySelector('#addSpot')
-newSpotForm.addEventListener('submit', function(event){
+var newCafeForm = document.querySelector('#addCafe')
+newCafeForm.addEventListener('submit', function(event){
 	console.log('inside add event listener')
     event.preventDefault()
     downloadTest(function(downloadSpeed, body, fileSize){
@@ -123,10 +123,10 @@ newSpotForm.addEventListener('submit', function(event){
             var postInfo = {
                 headers: {'content-type': 'application/json' },
                 method: 'POST', 
-                uri: '/addSpot', 
+                uri: '/addCafe', 
                 body: JSON.stringify({
-                    name: newSpotForm.elements.name.value,
-                    address: newSpotForm.elements.address.value,
+                    name: newCafeForm.elements.name.value,
+                    address: newCafeForm.elements.address.value,
                     testList: [{timeStamp: timeStamp,
                                 downloadSpeed: Math.round(downloadSpeed*10)/10, 
                                 uploadSpeed: Math.round(uploadSpeed*10)/10}],

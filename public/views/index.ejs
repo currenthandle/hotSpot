@@ -7,7 +7,7 @@
 <body>
 	<div class="container">
 		<header class="row">
-			<h1>Hot Spot</h1>
+			<h1>Hot Spot Rank</h1>
 		</header>
 		<div class="row">
 			<table class="table table-striped col-sd-12">
@@ -18,47 +18,30 @@
 						<th id="downloadHeader">
 							<form action="/" method="get">
 								<input type="hidden" name="sorter" value="downAvg">
-								<button type="submit" class="btn btn-warning">Download</button>
+								<button type="submit" class="btn btn-success">Download</button>
 							</form>
 						</th>
 						<th id="uploadHeader">
 							<form action="/" method="get">
 								<input type="hidden" name="sorter" value="upAvg">
-								<button type="submit" class="btn btn-warning">Upload</button>
+								<button type="submit" class="btn btn-success">Upload</button>
 							</form>
 						</th>
-						<th>&nbsp;</th>
 						<th>&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
-					<% for (var i = 0; i < spots.length; i++) { %>
+					<% for (var i = 0; i < cafes.length; i++) { %>
 						<tr>
-							<td><%= spots[i].name %></td>
-							<td><%= spots[i].address %></td>
-							<td><%= spots[i].downAvg %></td>
-							<td><%= spots[i].upAvg %></td>
+							<td><%= cafes[i].name %></td>
+							<td><%= cafes[i].address %></td>
+							<td><%= cafes[i].downAvg %></td>
+							<td><%= cafes[i].upAvg %></td>
 							<td>
 								<form class="addTest" action="/addTest" method="post">
-									<input type="hidden" name="id" value="<%= spots[i]._id %>">
+									<input type="hidden" name="id" value="<%= cafes[i]._id %>">
 									<button type="submit" class="btn btn-primary">Add Test</button>
 								</form>
-							</td>
-							<td>
-								<form action="/deleteSpot" method="delete" class="deleteBtn">
-									<input type="hidden" name="id" value="<%= spots[i]._id %>">
-									<button type="submit" class="btn btn-danger">Delete</button>
-								</form>
-								<script>
-									var deleteBtns = document.querySelectorAll(".deleteBtn")
-									Array.prototype.forEach.call(deleteBtns, function(deleteBtn){
-										deleteBtn.addEventListener('click', function(){
-											var urlReq = new XMLHttpRequest()
-											
-										})
-									})
-									urlReq.open("delete", "/spot)	
-								</script>
 							</td>
 						</tr>
 					<% } %>
@@ -66,10 +49,10 @@
 			</table>
 		</div> <!-- Row -->
 		<div class="row form-group">
-			<form id="addSpot" action="/addSpot" method="post">
+			<form id="addCafe" action="/addCafe" method="post">
 				<input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
 				<input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
-				<button class="btn" type="submit" class="col-sd-2">Add Location</button>
+				<button class="btn btn-info col-sd-2 add-location" type="submit">Add Location</button>
 			</form>
 		</div> <!-- Row -->
 		<footer class="row">
