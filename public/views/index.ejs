@@ -1,63 +1,58 @@
 <!doctype>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href='/css/bootstrap.min.css'>
-	<link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+	<!-- <link rel="stylesheet" type="text/css" href='/css/bootstrap.min.css'> -->
+	<!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
+	<link rel="stylesheet" type="text/css" href="/css/new.css">
 </head>
 <body>
-	<div class="container">
-		<header class="row">
-			<h1>Hot Spot Rank</h1>
-		</header>
-		<div class="row">
-			<table class="table table-striped col-sd-12">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Address</th>
-						<th id="downloadHeader">
-							<form action="/" method="get">
-								<input type="hidden" name="sorter" value="downAvg">
-								<button type="submit" class="btn btn-success">Download</button>
-							</form>
-						</th>
-						<th id="uploadHeader">
-							<form action="/" method="get">
-								<input type="hidden" name="sorter" value="upAvg">
-								<button type="submit" class="btn btn-success">Upload</button>
-							</form>
-						</th>
-						<th>&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for (var i = 0; i < cafes.length; i++) { %>
-						<tr>
-							<td><%= cafes[i].name %></td>
-							<td><%= cafes[i].address %></td>
-							<td><%= cafes[i].downAvg %></td>
-							<td><%= cafes[i].upAvg %></td>
-							<td>
-								<form class="addTest" action="/addTest" method="post">
-									<input type="hidden" name="id" value="<%= cafes[i]._id %>">
-									<button type="submit" class="btn btn-primary">Add Test</button>
-								</form>
-							</td>
-						</tr>
-					<% } %>
-				</tbody>
-			</table>
-		</div> <!-- Row -->
-		<div class="row form-group">
-			<form id="addCafe" action="/addCafe" method="post">
-				<input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
-				<input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
-				<button class="btn btn-info col-sd-2 add-location" type="submit">Add Location</button>
-			</form>
-		</div> <!-- Row -->
-		<footer class="row">
-		</footer>
-	</div>
+    <div class='header'>
+        <h1>Hot Spot Rank</h1>
+        <div class='table-header'>
+            <div class='name'>Name</div>
+            <div class='address'>Address</div>
+            <div class='downAvg' id="downloadHeader">
+                <form action="/" medivod="get">
+                    <input type="hidden" name="sorter" value="downAvg">
+                    <button type="submit" class="btn btn-success">Download</button>
+                </form>
+            </div>
+            <div class='upAvg' id="uploadHeader">
+                <form action="/" method="get">
+                    <input type="hidden" name="sorter" value="upAvg">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </form>
+            </div>
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    <div class="table">
+        <div class='table-data'>
+            <% for (var i = 0; i < cafes.length; i++) { %>
+                <div class='table-row'>
+                    <div class='name'><%= cafes[i].name %></div>
+                    <div class='address'><%= cafes[i].address %></div>
+                    <div class='downAvg'><%= Math.round(100*cafes[i].downAvg)/100  %></div>
+                    <div class='upAvg'><%= Math.round(100*cafes[i].upAvg)/100  %></div>
+                    <div class='addTest'>
+                        <form class="addTest" action="/addTest" method="post">
+                            <input type="hidden" name="id" value="<%= cafes[i]._id %>">
+                            <button type="submit" class="btn btn-primary">Add Test</button>
+                        </form>
+                    </div>
+                </div>
+            <% } %>
+        </div> <!-- table-data -->
+    </div> <!-- table -->
+    <form id="addCafe" action="/addCafe" method="post">
+        <input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
+        <input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
+        <button class="btn btn-info col-sd-2 add-location" type="submit">Add Location</button>
+    </form>
+    <footer class="row">
+    </footer>
+
 	<script src='/js/bundle.js'></script>
 </body>
 </html>

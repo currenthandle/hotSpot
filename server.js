@@ -38,8 +38,7 @@ console.log('Listening on port 3000 test')
 	
 // Routes
 app.get('/', function(req, res, next){
-	console.log('req.body.sorter', req.body.sorter)
-	if(req.body.sort === 'upAvg'){
+	if(req.query.sorter === 'upAvg'){
 		db.spots.find().sort({upAvg: -1}).toArray(function(err, cafes){
 			if (err) { next(err) }
 			else {

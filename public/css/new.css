@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+}
+.header {
+    width: 100%;
+    padding-left: .5rem;
+    position: fixed;
+    background-color: white;
+}
+
+h1{ margin: 0; }
+
+.table {
+    padding-top:  4.3rem;
+    width: 100%;
+}
+
+form {
+ display: inline;
+}
+
+.name {
+    width: 30%;
+}
+
+
+
+.table-header> div , .table-row > div { 
+    padding-left: .6rem;
+    display: inline-block; 
+}
+
+.table-row {
+    padding: .7rem 0 .7rem 0; 
+    border-top: .1rem grey solid;
+}
+
+
+.table-row .downAvg , .table-row .upAvg { font-weight: bold}
+
+.name{ width: 30%; }
+.address { width: 30%; }
+
+.downAvg { width: 30%; }
+
+.upAvg { width: 10%; }
+
+.downAvg { width: 10%; }
+
+.addTest { width: 10%; }
