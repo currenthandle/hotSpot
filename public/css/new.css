@@ -48,9 +48,19 @@ form {
 
 .addTest { width: 10%; }
 
-.addSpot { display: none;  }
+.addSpot { 
+    display: none;  
+    text-align: center;
+    position: fixed;
+    margin-top: 12.5%;
+    margin-left: 22.5%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px black solid;
+    padding: 7rem 4rem 7rem 4rem;
+}
 
 .open-add-form { 
     float: right; 
     margin-right: 2.1rem;
 }
+.open-add-form input { display: block };

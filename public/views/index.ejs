@@ -1,7 +1,6 @@
 <!doctype>
 <html>
 <head>
-    
 	<!-- <link rel="stylesheet" type="text/css" href='/css/bootstrap.min.css'> -->
 	<!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
 	<link rel="stylesheet" type="text/css" href="/css/new.css">
@@ -27,6 +26,14 @@
             <button onclick="openAddForm(event)" class='open-add-form'>Add Hotspot</button>
         </div>
     </div>
+    <div class='addSpot'>
+        <button onclick='colapseForm(event)'>close</button>
+        <form id="addCafe" action="/addCafe" method="post">
+            <input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
+            <input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
+            <button class="btn btn-info col-sd-2 add-location" type="submit">Add Location</button>
+        </form>
+    </div>
     <div class="table">
         <div class='table-data'>
             <% for (var i = 0; i < cafes.length; i++) { %>
@@ -45,11 +52,6 @@
             <% } %>
         </div> <!-- table-data -->
     </div> <!-- table -->
-    <form id="addCafe" class='addSpot' action="/addCafe" method="post">
-        <input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
-        <input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
-        <button class="btn btn-info col-sd-2 add-location" type="submit">Add Location</button>
-    </form>
     <footer class="row">
     </footer>
 
@@ -59,6 +61,12 @@
             console.log('hi')
             var form = document.querySelector('.addSpot')
             form.style.display = "block"
+        }
+        function colapseForm(e) {
+            e.preventDefault()
+            var form = document.querySelector('.addSpot')
+            form.style.display = "none"
+            
         }
     </script>
 	<script src='/js/bundle.js'></script>
