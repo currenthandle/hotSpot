@@ -3,6 +3,7 @@
 <head>
 	<!-- <link rel="stylesheet" type="text/css" href='/css/bootstrap.min.css'> -->
 	<!-- <link rel="stylesheet" type="text/css" href="/css/index.css"> -->
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/new.css">
 </head>
 <body>
@@ -27,11 +28,11 @@
         </div>
     </div>
     <div class='addSpot'>
-        <button onclick='colapseForm(event)'>close</button>
+        <i onclick='collapseForm(event)' class='fa fa-times-circle-o' aria-hidden='true'></i>
         <form id="addCafe" action="/addCafe" method="post">
-            <input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
-            <input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
-            <button class="btn btn-info col-sd-2 add-location" type="submit">Add Location</button>
+            <div><input type="text" class="col-sd-5 form-control" name="name" placeholder="Name"></div>
+            <div><input type="text" class="col-sd-5 form-control" name="address" placeholder="Address"></div>
+            <div><button class="add-location" type="submit">Add Location</button></div>
         </form>
     </div>
     <div class="table">
@@ -62,12 +63,34 @@
             var form = document.querySelector('.addSpot')
             form.style.display = "block"
         }
-        function colapseForm(e) {
+        function collapseForm(e) {
             e.preventDefault()
             var form = document.querySelector('.addSpot')
             form.style.display = "none"
-            
         }
+        (function(){
+            console.log('in')
+            var body = document.getElementsByTagName('body')[0]
+            var addSpot = document.querySelector('.addSpot')
+            var openForm = document.querySelector('.open-add-form')
+
+            var name = document.querySelector('.addSpot').getElementsByTagName('form')[0].getElementsByTagName('input')[0]
+            var address = document.querySelector('.addSpot').getElementsByTagName('form')[0].getElementsByTagName('input')[1]
+            var submit = document.getElementsByTagName('form')[0].getElementsByTagName('button')[0]
+
+            console.log('name', name)
+            console.log('submit', submit)
+            console.log('body', body)
+            console.log('addSpot.children', addSpot.children)
+            body.addEventListener('click', function(e) {
+                console.log('e.target', e.target)
+                if(e.target === openForm) { openAddForm(e) }
+                else if(e.target === addSpot) { openAddForm(e) }
+                else if(e.target === name) { return }
+                else if(e.target === address) { return }
+                else  { collapseForm(e) }
+            })
+        })()
     </script>
 	<script src='/js/bundle.js'></script>
 </body>

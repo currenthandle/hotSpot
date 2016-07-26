@@ -57,38 +57,15 @@ form {
     display: none;  
     text-align: center;
     position: fixed;
-
-    margin: 12% 22% 0 7.45%;
-    padding: 1rem 1rem 3rem 1rem;
-    width: 80%;
-
-    background-color: rgba(255, 255, 255, 0.88);
-    border: .08rem black solid;
-}
-.addSpot input , .add-location { 
-    width: 90%; 
-    height: 2rem;
-
-    margin-bottom: .5rem;
-
-    border: .08rem solid grey;
-    border-radius: .2rem;
-}
-
-.add-location {
-    background-color: #d3e95c;
+    margin-top: 12.5%;
+    margin-left: 22.5%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px black solid;
+    padding: 7rem 4rem 7rem 4rem;
 }
 
 .open-add-form { 
     float: right; 
     margin-right: 2.1rem;
-
-    background-color: #d3e95c;
 }
-.open-add-form input { display: block ;}
-
-.fa-times-circle-o {
-    color: red; 
-    padding: 1.6rem 0 .5rem 0;
-    font-size: 3rem;
-}
+.open-add-form input { display: block };
