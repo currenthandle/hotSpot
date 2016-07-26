@@ -24,7 +24,6 @@ form {
 }
 
 
-
 .table-header> div , .table-row > div { 
     padding-left: .6rem;
     display: inline-block; 
@@ -48,3 +47,10 @@ form {
 .downAvg { width: 10%; }
 
 .addTest { width: 10%; }
+
+.addSpot { display: none;  }
+
+.open-add-form { 
+    float: right; 
+    margin-right: 2.1rem;
+}

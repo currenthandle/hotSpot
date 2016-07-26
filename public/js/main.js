@@ -144,3 +144,10 @@ newCafeForm.addEventListener('submit', function(event){
    
     })
 })
+
+function openAddForm(e){
+    preventDefault()
+    console.log('hi')
+    var form = document.querySelector('.addSpot')
+    form.style.display = "block"
+}

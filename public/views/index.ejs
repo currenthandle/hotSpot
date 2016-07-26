@@ -24,7 +24,7 @@
                     <button type="submit" class="btn btn-success">Upload</button>
                 </form>
             </div>
-            <div>&nbsp;</div>
+            <button onclick="openAddForm(event)" class='open-add-form'>Add Hotspot</button>
         </div>
     </div>
     <div class="table">
@@ -45,7 +45,7 @@
             <% } %>
         </div> <!-- table-data -->
     </div> <!-- table -->
-    <form id="addCafe" action="/addCafe" method="post">
+    <form id="addCafe" class='addSpot' action="/addCafe" method="post">
         <input type="text" class="col-sd-5 form-control" name="name" placeholder="Name">
         <input type="text" class="col-sd-5 form-control" name="address" placeholder="Address">
         <button class="btn btn-info col-sd-2 add-location" type="submit">Add Location</button>
@@ -53,6 +53,14 @@
     <footer class="row">
     </footer>
 
+    <script>
+        function openAddForm(e){
+            e.preventDefault()
+            console.log('hi')
+            var form = document.querySelector('.addSpot')
+            form.style.display = "block"
+        }
+    </script>
 	<script src='/js/bundle.js'></script>
 </body>
 </html>
