@@ -441,11 +441,9 @@ downloadHeader.addEventListener('click', function(event){
         console.log('Inside xhr callback, for upload')
         if (err) console.log('err',err)
         else{
-            console.log('Upload fileSize', fileSize)
             miliElapse = Number(miliElapse)
             var mBytesSize = fileSize, 
             mBitsPerSecond = (fileSize/miliElapse)*8000
-            console.log('mBitsPerSecond Up', mBitsPerSecond)
             callback(mBitsPerSecond)
         }
     })
@@ -455,21 +453,14 @@ downloadHeader.addEventListener('click', function(event){
 })
 
 var newSpeedTestForms = document.querySelectorAll('.addTest')
-//console.log('newSpeedTestForms', newSpeedTestForms)
 for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){
     console.log('newSpeedTestForm conditional')
     form.addEventListener('click', function(event){
-		console.log('form.elements.id.value,',form.elements.id.value)
-        console.log('addSpeedTest Event Triggered')
         event.preventDefault()
-        console.log('addSpeedTest Event Triggered')
-		console.log('calling downloadTest on next line')
         downloadTest(function(downloadSpeed, body, fileSize){
             uploadTest(body, fileSize, function(uploadSpeed){
-                
                 var now = new Date(),
                 timeStamp = now.toISOString()
-                //console.log('xhr log')
                 var postInfo = {
                     headers: {'content-type': 'application/json' },
                     method: 'POST', 
@@ -483,20 +474,13 @@ for (var i = 0; i < newSpeedTestForms.length; i++) (function(form){
                         }
                     })
                 }
-                
-                console.log('downloadSpeed',downloadSpeed) 
-                console.log('uploadSpeed',uploadSpeed)
-                console.log('postInfo',postInfo)
-                
                 xhr(postInfo, function(err) {   
                     if (err) console.log(err) 
                     location.reload()
                
                 })
             })
-       
         })
-         
     })
 })(newSpeedTestForms[i])
 
@@ -540,6 +524,21 @@ function openAddForm(e){
     console.log('hi')
     var form = document.querySelector('.addSpot')
     form.style.display = "block"
+}
+function openAddForm(e){
+    e.preventDefault()
+    console.log('hi')
+    var form = document.querySelector('.addSpot')
+    form.style.display = "block"
+}
+function collapseForm(e) {
+    e.preventDefault() 
+    var form = document.querySelector('.addSpot')
+    form.style.display = "none"
+}
+
+function sayWord(word) { 
+    console.log(word)
 }
 
 },{"xhr":6}]},{},[9]);

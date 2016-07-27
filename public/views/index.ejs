@@ -13,7 +13,7 @@
             <div class='name'>Name</div>
             <div class='address'>Address</div>
             <div class='downAvg' id="downloadHeader">
-                <form action="/" medivod="get">
+                <form action="/" method="get">
                     <input type="hidden" name="sorter" value="downAvg">
                     <button type="submit" class="btn btn-success">Download</button>
                 </form>
@@ -30,9 +30,9 @@
     <div class='addSpot'>
         <i onclick='collapseForm(event)' class='fa fa-times-circle-o' aria-hidden='true'></i>
         <form id="addCafe" action="/addCafe" method="post">
-            <div><input type="text" class="col-sd-5 form-control" name="name" placeholder="Name"></div>
-            <div><input type="text" class="col-sd-5 form-control" name="address" placeholder="Address"></div>
-            <div><button class="add-location" type="submit">Add Location</button></div>
+            <div class='nameWrapper'><input type="text" class="col-sd-5 form-control" name="name" placeholder="Name"></div>
+            <div class='addressWrapper'><input type="text" class="col-sd-5 form-control" name="address" placeholder="Address"></div>
+            <div class='submitWrapper'><button class="add-location" type="submit">Add Location</button></div>
         </form>
     </div>
     <div class="table">
@@ -59,7 +59,8 @@
     <script>
         function openAddForm(e){
             e.preventDefault()
-            console.log('hi')
+            //console.log('e.target', e.target)
+            console.log('open form')
             var form = document.querySelector('.addSpot')
             form.style.display = "block"
         }
@@ -68,30 +69,19 @@
             var form = document.querySelector('.addSpot')
             form.style.display = "none"
         }
-        (function(){
-            console.log('in')
-            var body = document.getElementsByTagName('body')[0]
+        var body = document.getElementsByTagName('body')[0]
+        var addSpot = document.querySelector('.addSpot')
+        
+        body.addEventListener('click', function(e) {
+            //console.log('e.target', e.target)
+            e.stopPropagation()
+            console.log('body clicked')
             var addSpot = document.querySelector('.addSpot')
-            var openForm = document.querySelector('.open-add-form')
-
-            var name = document.querySelector('.addSpot').getElementsByTagName('form')[0].getElementsByTagName('input')[0]
-            var address = document.querySelector('.addSpot').getElementsByTagName('form')[0].getElementsByTagName('input')[1]
-            var submit = document.getElementsByTagName('form')[0].getElementsByTagName('button')[0]
-
-            console.log('name', name)
-            console.log('submit', submit)
-            console.log('body', body)
-            console.log('addSpot.children', addSpot.children)
-            body.addEventListener('click', function(e) {
-                console.log('e.target', e.target)
-                if(e.target === openForm) { openAddForm(e) }
-                else if(e.target === addSpot) { openAddForm(e) }
-                else if(e.target === name) { return }
-                else if(e.target === address) { return }
-                else  { collapseForm(e) }
-            })
-        })()
+            addSpot.style.display = 'none'
+        }) 
+        addSpot.addEventListener('click', function(e) { e.stopPropagation() }) 
+        
     </script>
-	<script src='/js/bundle.js'></script>
+	<script src='/bundle.js'></script>
 </body>
 </html>
